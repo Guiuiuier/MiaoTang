@@ -136,10 +136,10 @@ if(t.text() == "已完成") {
 				  t.click();
 				  sleep(4000);
 				  ui.run(function() {
-					w.text.setText("自己做完任务就可以返回喵糖继续了，");
+					w.text.setText("接下来做完小鸡就回到喵糖任务界面，");
 				});
 				
-//sleep(20000);
+sleep(1000);
 }
 			}
 	Maotang();	}
@@ -156,7 +156,7 @@ function Maotang(){
 //sleep(6000);
 //	click(device.width/1.2,device.height/1.4);
 	ui.run(function() {
-	     w.text.setText("接下来做完小鸡就回到喵糖任务界面，现在开始你就可以解放你的双手啦");
+	     w.text.setText("现在开始你就可以解放你的双手啦");
 	 });
 	t = text("赚糖领红包").findOne(SHORT_TIME);
 	if (t != null) {
@@ -183,11 +183,13 @@ function Maotang(){
 	// sleep(3000);
 
 	// Maotang();
-while(text("完成签到").exists()) {
+	while(text("完成签到").exists()) {
 		t = text("完成签到").findOne().parent().parent().parent().child(1);
 		if (t.text() == "去完成") {
 			toast("签到中");
 			t.click();
+		}else {
+			break;
 		}
 	}
 
@@ -258,6 +260,8 @@ while (text("全场每满200减30").exists()) {
 		  
 		  }
 		  
+		  }else{
+			  break;
 		  }
 		}
 			
@@ -272,7 +276,9 @@ while (text("全场每满200减30").exists()) {
 	        if (!text("做任务赢奖励").exists()) {
 	            back();
 	            sleep(SHORT_TIME);
-	        }
+	        }else {
+				break;
+			}
 	    }
 	    while (text("浏览15s立得").exists()) {
 	        t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
@@ -334,6 +340,8 @@ while (text("全场每满200减30").exists()) {
 	  
 		  sleep(1000);
 	  
+	  }else{
+		  break;
 	  }
 	  
 	  }}
@@ -393,6 +401,8 @@ while (text("全场每满200减30").exists()) {
 					w.text.setText("臭宝,这是我要求你自己做的最后一个喂小鸡任务，不要让我失望！弄完长按关闭");
 				});
 				//Maotang();
+				}else{
+					break;
 				}
 			}
 //alert("由于阿里巴巴的安全机制，没有办法做小互动。请你在点击确认后结束这个脚本并打开另一个脚本继续完成任务。");
