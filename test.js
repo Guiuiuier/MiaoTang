@@ -1,18 +1,18 @@
 // 本脚本仅仅用于交流和学习 切勿用于非法用途，否则后果自负。
-//目前全面屏手机大部分都是可以使用的。不得不说，这个和我的适配也没太多大关系，主要还是淘宝前端优化适配的可以导致我的也是配了。。。。。。。。
 
 
-//等待常量
+
+//长等待时间常量，用于应用启动、广告等较长时间等待，如果网络不好或手机卡请增加此数值，默认8秒
 var LONG_TIME = 8000;
 
-//时间常量
+//短等待时间常量，用于例如返回等每步操作后的等待，如果手机卡请增加此数值
 var SHORT_TIME = 3000;
 
-//浏览时间常量
+//浏览15秒任务默认等待时间，默认20s，如果觉得等的时间太长可以减小此常量，单位为毫秒
 var WAITING_TIME = 30000;
+//var WAITING_TIME = 18000;
 
-
-//根据个人手机性能改一改还是不错的
+/*--------根据个人情况修改以上内容----------*/
 
 auto.waitFor();
 var height = device.height;
@@ -78,7 +78,7 @@ function Maotang1(){
 	    w.text.setText("接下来双手不要动了  按下[音量-]键或长按[悬浮窗内文字]我就消失了");
 	});
 	toast("我要给兄弟姐妹们开始搞糖了");
-var con=confirm("首次打开淘宝和支付宝就能领取一个喵糖的任务如果做过了请点击取消 否则确认");
+var con=confirm("打开淘宝和支付宝就能领取一个喵糖的任务如果做过了请点击取消 否则确认");
 if(con==true){
 	sleep(3000);
 	click(device.width/2,device.height/1.05);//弹出转红包
@@ -96,7 +96,7 @@ Maotang2();
 	
 }
 function Maotang2(){
-	launchApp("淘宝");
+	//launchApp("淘宝");
 	t = text("赚糖领红包").findOne(SHORT_TIME);
 	if (t != null) {
 	    t.click();
@@ -104,7 +104,7 @@ function Maotang2(){
     t=null;
 	}	
 	text("做任务赢奖励").waitFor();
-	toast("我要给兄弟姐妹们开始搞糖了111");
+	toast("我要给兄弟姐妹们开始搞糖了1");
 	if(text("前往蚂蚁森林赚").exists()){
 t = text("前往蚂蚁森林赚").findOne().parent().parent().parent().child(1);
 	if (t.text() == "去完成") {
@@ -129,8 +129,8 @@ t = text("前往蚂蚁森林赚").findOne().parent().parent().parent().child(1);
 //var JI=confirm("小鸡任务需要自己做，如果你需要我帮你打开小鸡页面请点击确认 否则取消");
 if(text("喂小鸡一次立得").exists()) {
 	t = text("喂小鸡一次立得").findOne().parent().parent().parent().child(1);
-if(t.text() == "去完成") {
-    var JI=confirm("小鸡任务需要自己做，如果你需要我帮你打开小鸡页面请点击确认并在二十秒内完成并返回到喵糖任务页面 否则取消 我会继续运行当前还有点的任务");
+if(t.text() == "已完成") {
+    var JI=confirm("小鸡任务要自己做，做完之后返回喵糖我就可以继续了，或者说你不想做小鸡，那我会继续运行下面的");
     if(JI==true){
 				  toast("靠你了宝");
 				  t.click();
@@ -139,23 +139,24 @@ if(t.text() == "去完成") {
 					w.text.setText("自己做完任务就可以返回喵糖继续了，");
 				});
 				
-sleep(20000);
+//sleep(20000);
 }
-			}}
+			}
+	Maotang();	}
 
 
-Maotang();
+
   		
 
 }
 function Maotang(){
-	launchApp("淘宝");
+	//launchApp("淘宝");
 	//sleep(4000);
 //click(device.width/3.5,device.height/1.9);
 //sleep(6000);
 //	click(device.width/1.2,device.height/1.4);
 	ui.run(function() {
-	     w.text.setText("真的不要乱动哦 否则又得重新来过 很烦的");
+	     w.text.setText("接下来做完小鸡就回到喵糖任务界面，现在开始你就可以解放你的双手啦");
 	 });
 	t = text("赚糖领红包").findOne(SHORT_TIME);
 	if (t != null) {
@@ -182,7 +183,7 @@ function Maotang(){
 	// sleep(3000);
 
 	// Maotang();
-if(text("完成签到").exists()) {
+while(text("完成签到").exists()) {
 		t = text("完成签到").findOne().parent().parent().parent().child(1);
 		if (t.text() == "去完成") {
 			toast("签到中");
@@ -229,24 +230,8 @@ while (text("全场每满200减30").exists()) {
 	      t = text("浏览精选商品得奖励").findOne().parent().parent().parent().child(1);
 	        if (t.text() == "去完成") {
 	            toast("我去逛逛");
-	            if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
-	                t.click();
-	                sleep(SHORT_TIME);
-	                if (text("打开链接").exists()) {
-	                    text("打开链接").findOne().click();
-	                    sleep(SHORT_TIME);
-	                }
-	            } else {
-	                t.click();
-	                sleep(SHORT_TIME);
-	            }
-	            sleep(WAITING_TIME);
-	            back();
-	            sleep(SHORT_TIME + 1000);
-	            if (!text("做任务赢奖励").exists()) {
-	                back();
-	                sleep(SHORT_TIME);
-	            }
+			   t.click();
+			   sleep(30000);
 	        } else {
 	            break;
 	        }
@@ -273,7 +258,8 @@ while (text("全场每满200减30").exists()) {
 		  
 		  }
 		  
-		  }}
+		  }
+		}
 			
 	 	    
 	    while (text("去浏览").exists()) {
