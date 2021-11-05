@@ -2,14 +2,17 @@
 
 
 
+//长等待时间常量，用于应用启动、广告等较长时间等待，如果网络不好或手机卡请增加此数值，默认8秒
 var LONG_TIME = 8000;
 
+//短等待时间常量，用于例如返回等每步操作后的等待，如果手机卡请增加此数值
 var SHORT_TIME = 3000;
 
+//浏览15秒任务默认等待时间，默认20s，如果觉得等的时间太长可以减小此常量，单位为毫秒
 var WAITING_TIME = 30000;
 //var WAITING_TIME = 18000;
 
-/*看手机性能修改-*/
+/*--------根据个人情况修改以上内容----------*/
 
 auto.waitFor();
 var height = device.height;
@@ -142,7 +145,7 @@ sleep(1000);
 	Maotang();	}
 
 
-
+	Maotang();
   		
 
 }
@@ -231,6 +234,18 @@ while (text("全场每满200减30").exists()) {
 	            toast("我去逛逛");
 			   t.click();
 			   sleep(30000);
+			   back();
+	        } else {
+	            break;
+	        }
+				   }
+				     while (text("浏览精选商品得奖励").exists()) {
+	      t = text("浏览精选商品得奖励").findOne().parent().parent().parent().child(1);
+	        if (t.text() == "去浏览") {
+	            toast("我去逛逛");
+			   t.click();
+			   sleep(30000);
+			   back();
 	        } else {
 	            break;
 	        }
@@ -245,6 +260,7 @@ while (text("全场每满200减30").exists()) {
 						   ui.run(function() {
 							  w.text.setText("玩完返回任务界面我会继续运行!");
 						  });
+						  t.click();
 						 t = text("赚糖领红包").findOne(SHORT_TIME);
 			  if (t != null) {
 				  t.click();
@@ -277,8 +293,26 @@ while (text("全场每满200减30").exists()) {
 				break;
 			}
 	    }
-	    while (text("浏览15s立得").exists()) {
-	        t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
+	    while (text("浏览15s得").exists()) {
+	        t = text("浏览15s得").findOne().parent().parent().parent().child(1);
+	        if (t.text() == "去完成") {
+	            toast("我去逛逛");
+	            t.click();
+	            sleep(SHORT_TIME);
+	            sleep(WAITING_TIME);
+	            back();
+	            sleep(SHORT_TIME + 1000);
+	            if (!text("做任务赢奖励").exists()) {
+	                back();
+	                sleep(SHORT_TIME);
+	            }
+	        } else {
+	            break;
+	        }
+		}
+		
+		while (text("爆款限时3折起").exists()) {
+	        t = text("爆款限时3折起").findOne().parent().parent().parent().child(1);
 	        if (t.text() == "去完成") {
 	            toast("我去逛逛");
 	            t.click();
@@ -343,9 +377,9 @@ while (text("全场每满200减30").exists()) {
 	  
 	  }}
 		}
-	    while (text("浏览15秒立得").exists()) {
-	        t = text("浏览15秒立得").findOne().parent().parent().parent().child(1);
-	        if (t.text() == "去完成") {
+	    while (text("浏览15秒得").exists()) {
+	        t = text("浏览15秒得").findOne().parent().parent().parent().child(1);
+	        if (t.text() == "去浏览") {
 	            toast("存在浏览任务");
 	            if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
 	                t.click();
@@ -372,6 +406,23 @@ while (text("全场每满200减30").exists()) {
 		}	    while (text("浏览15s立得").exists()) {
 	        t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
 	        if (t.text() == "去完成") {
+	            toast("我去逛逛");
+	            t.click();
+	            sleep(SHORT_TIME);
+	            sleep(WAITING_TIME);
+	            back();
+	            sleep(SHORT_TIME + 1000);
+	            if (!text("做任务赢奖励").exists()) {
+	                back();
+	                sleep(SHORT_TIME);
+	            }
+	        } else {
+	            break;
+	        }
+	    }
+		while (text("浏览15秒得奖励").exists()) {
+	        t = text("浏览15秒得奖励").findOne().parent().parent().parent().child(1);
+	        if (t.text() == "去浏览") {
 	            toast("我去逛逛");
 	            t.click();
 	            sleep(SHORT_TIME);
