@@ -129,7 +129,7 @@ t = text("前往蚂蚁森林赚").findOne().parent().parent().parent().child(1);
 //var JI=confirm("小鸡任务需要自己做，如果你需要我帮你打开小鸡页面请点击确认 否则取消");
 if(text("喂小鸡一次立得").exists()) {
 	t = text("喂小鸡一次立得").findOne().parent().parent().parent().child(1);
-if(t.text() == "已完成") {
+if(t.text() == "去完成") {
     var JI=confirm("小鸡任务要自己做，做完之后返回喵糖我就可以继续了，或者说你不想做小鸡，那我会继续运行下面的");
     if(JI==true){
 				  toast("靠你了宝");
@@ -183,13 +183,11 @@ function Maotang(){
 	// sleep(3000);
 
 	// Maotang();
-	while(text("完成签到").exists()) {
+	if(text("完成签到").exists()) {
 		t = text("完成签到").findOne().parent().parent().parent().child(1);
 		if (t.text() == "去完成") {
 			toast("签到中");
 			t.click();
-		}else {
-			break;
 		}
 	}
 
@@ -353,30 +351,33 @@ while (text("全场每满200减30").exists()) {
 	        } else {
 	            break;
 			}
-			while(text("完成小互动得奖励").exists()) {
-				t = text("完成小互动得奖励").findOne().parent().parent().parent().child(1);
-				  if (t.text() == "去完成") {
-		  var hudong=confirm("互动需要自己完成，需要我打开请点击确认并自己打开小互动 完成后返回任务界面 我会继续 否则取消 我会继续运行下面的");
-				  if(hudong==true){
-					   ui.run(function() {
-						  w.text.setText("玩完返回任务界面我会继续运行!");
-					  });
-					 t = text("赚糖领红包").findOne(SHORT_TIME);
-		  if (t != null) {
-			  t.click();
-			  sleep(SHORT_TIME);
-		  }
-	  //className("android.widget.Button").text("赚糖领红包").findOne().click();
-		  text("做任务赢奖励").waitFor();
-	  
-		  sleep(1000);
-	  
-	  }else{
-		  break;
-	  }
-	  
-	  }}
+			
 		}
+
+		while(text("完成小互动得奖励").exists()) {
+			t = text("完成小互动得奖励").findOne().parent().parent().parent().child(1);
+			  if (t.text() == "去完成") {
+	  var hudong=confirm("互动需要自己完成，需要我打开请点击确认并自己打开小互动 完成后返回任务界面 我会继续 否则取消 我会继续运行下面的");
+			  if(hudong==true){
+				   ui.run(function() {
+					  w.text.setText("玩完返回任务界面我会继续运行!");
+				  });
+				 t = text("赚糖领红包").findOne(SHORT_TIME);
+	  if (t != null) {
+		  t.click();
+		  sleep(SHORT_TIME);
+	  }
+  //className("android.widget.Button").text("赚糖领红包").findOne().click();
+	  text("做任务赢奖励").waitFor();
+  
+	  sleep(1000);
+  
+  }else{
+	  break;
+  }
+  
+  }}
+
 	    while (text("浏览15秒得").exists()) {
 	        t = text("浏览15秒得").findOne().parent().parent().parent().child(1);
 	        if (t.text() == "去浏览") {
@@ -403,7 +404,8 @@ while (text("全场每满200减30").exists()) {
 	            break;
 			}
 			
-		}	    while (text("浏览15s立得").exists()) {
+		}	   
+		 while (text("浏览15s立得").exists()) {
 	        t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
 	        if (t.text() == "去完成") {
 	            toast("我去逛逛");
@@ -449,13 +451,408 @@ while (text("全场每满200减30").exists()) {
 					w.text.setText("臭宝,这是我要求你自己做的最后一个喂小鸡任务，不要让我失望！弄完长按关闭");
 				});
 				//Maotang();
+				ui.run(function() {
+					w.text.setText("返回活动喵糖任务我会继续");
+				});
+			   t = text("赚糖领红包").findOne(SHORT_TIME);
+			   if (t != null) {
+				   t.click();
+				   sleep(SHORT_TIME);
+			   }
+		   //className("android.widget.Button").text("赚糖领红包").findOne().click();
+			   text("做任务赢奖励").waitFor();
 				}else{
 					break;
 				}
 			}
+			if(text("完成签到").exists()) {
+				t = text("完成签到").findOne().parent().parent().parent().child(1);
+				if (t.text() == "去完成") {
+					toast("签到中");
+					t.click();
+				}
+			}
+		
+		
+		  
+				 
+		
+		
+		while (text("全场每满200减30").exists()) {
+				  t = text("全场每满200减30").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
+							t.click();
+							sleep(SHORT_TIME);
+							if (text("打开链接").exists()) {
+								text("打开链接").findOne().click();
+								sleep(SHORT_TIME);
+							}
+						} else {
+							t.click();
+							sleep(SHORT_TIME);
+						}
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+						   }
+				  
+			  
+			 
+				
+			  while (text("浏览精选商品得奖励").exists()) {
+				  t = text("浏览精选商品得奖励").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+					   t.click();
+					   sleep(30000);
+					   back();
+					} else {
+						break;
+					}
+						   }
+							 while (text("浏览精选商品得奖励").exists()) {
+				  t = text("浏览精选商品得奖励").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去浏览") {
+						toast("我去逛逛");
+					   t.click();
+					   sleep(30000);
+					   back();
+					} else {
+						break;
+					}
+						   }
+				  
+			  
+						   while(text("完成小互动得奖励").exists()) {
+							t = text("完成小互动得奖励").findOne().parent().parent().parent().child(1);
+							  if (t.text() == "去完成") {
+					  var hudong=confirm("互动需要自己完成，需要我打开请点击确认并自己打开小互动 完成后返回任务界面 我会继续 否则取消 我会继续运行下面的");
+							  if(hudong==true){
+								   ui.run(function() {
+									  w.text.setText("玩完返回任务界面我会继续运行!");
+								  });
+								  t.click();
+								 t = text("赚糖领红包").findOne(SHORT_TIME);
+					  if (t != null) {
+						  t.click();
+						  sleep(SHORT_TIME);
+					  }
+				  //className("android.widget.Button").text("赚糖领红包").findOne().click();
+					  text("做任务赢奖励").waitFor();
+				  
+					  sleep(1000);
+				  
+				  }
+				  
+				  }else{
+					  break;
+				  }
+				}
+					
+					 
+				while (text("去浏览").exists()) {
+					toast("我去逛逛");
+					text("去浏览").findOne().click();
+					sleep(SHORT_TIME);
+					sleep(WAITING_TIME);
+					back();
+					sleep(SHORT_TIME + 1000);
+					if (!text("做任务赢奖励").exists()) {
+						back();
+						sleep(SHORT_TIME);
+					}else {
+						break;
+					}
+				}
+				while (text("浏览15s得").exists()) {
+					t = text("浏览15s得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+				while (text("完成任务立得").exists()) {
+					t = text("完成任务立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(5000);
+click(560,2031);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+				
+				while (text("爆款限时3折起").exists()) {
+					t = text("爆款限时3折起").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+				while (text("浏览15秒立得").exists()) {
+					t = text("浏览15秒立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("存在浏览任务");
+						if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
+							t.click();
+							sleep(SHORT_TIME);
+							if (text("打开链接").exists()) {
+								text("打开链接").findOne().click();
+								sleep(SHORT_TIME);
+							}
+						} else {
+							t.click();
+							sleep(SHORT_TIME);
+						}
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+					
+				}
+		
+				while(text("完成小互动得奖励").exists()) {
+					t = text("完成小互动得奖励").findOne().parent().parent().parent().child(1);
+					  if (t.text() == "去完成") {
+			  var hudong=confirm("互动需要自己完成，需要我打开请点击确认并自己打开小互动 完成后返回任务界面 我会继续 否则取消 我会继续运行下面的");
+					  if(hudong==true){
+						   ui.run(function() {
+							  w.text.setText("玩完返回任务界面我会继续运行!");
+						  });
+						 t = text("赚糖领红包").findOne(SHORT_TIME);
+			  if (t != null) {
+				  t.click();
+				  sleep(SHORT_TIME);
+			  }
+		  //className("android.widget.Button").text("赚糖领红包").findOne().click();
+			  text("做任务赢奖励").waitFor();
+		  
+			  sleep(1000);
+		  
+		  }else{
+			  break;
+		  }
+		  
+		  }}
+		
+				while (text("浏览15秒得").exists()) {
+					t = text("浏览15秒得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去浏览") {
+						toast("存在浏览任务");
+						if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
+							t.click();
+							sleep(SHORT_TIME);
+							if (text("打开链接").exists()) {
+								text("打开链接").findOne().click();
+								sleep(SHORT_TIME);
+							}
+						} else {
+							t.click();
+							sleep(SHORT_TIME);
+						}
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+					
+				}	   
+				 while (text("浏览15s立得").exists()) {
+					t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+				while (text("浏览15秒得奖励").exists()) {
+					t = text("浏览15秒得奖励").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去浏览") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+
+				while (text("完成任务立得").exists()) {
+					t = text("完成任务立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(5000);
+click(560,2031);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+
+
+				t = text("赚糖领红包").findOne(SHORT_TIME);
+				if (t != null) {
+					t.click();
+					sleep(SHORT_TIME);}
+					ui.run(function() {
+						w.text.setText("记得返回我会继续运行的");
+					});
+					text("做任务赢奖励").waitFor();
+
+					
+				while (text("浏览15秒得").exists()) {
+					t = text("浏览15秒得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去浏览") {
+						toast("存在浏览任务");
+						if (t.parent().child(0).child(0).text() == "浏览天天领现金(0/1)") {
+							t.click();
+							sleep(SHORT_TIME);
+							if (text("打开链接").exists()) {
+								text("打开链接").findOne().click();
+								sleep(SHORT_TIME);
+							}
+						} else {
+							t.click();
+							sleep(SHORT_TIME);
+						}
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+					
+				}	   
+				 while (text("浏览15s立得").exists()) {
+					t = text("浏览15s立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+				while (text("浏览15秒得奖励").exists()) {
+					t = text("浏览15秒得奖励").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去浏览") {
+						toast("我去逛逛");
+						t.click();
+						sleep(SHORT_TIME);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
+
+				while (text("完成任务立得").exists()) {
+					t = text("完成任务立得").findOne().parent().parent().parent().child(1);
+					if (t.text() == "去完成") {
+						toast("我去逛逛");
+						t.click();
+						sleep(5000);
+click(560,2031);
+						sleep(WAITING_TIME);
+						back();
+						sleep(SHORT_TIME + 1000);
+						if (!text("做任务赢奖励").exists()) {
+							back();
+							sleep(SHORT_TIME);
+						}
+					} else {
+						break;
+					}
+				}
 //alert("由于阿里巴巴的安全机制，没有办法做小互动。请你在点击确认后结束这个脚本并打开另一个脚本继续完成任务。");
-	   toast("臭宝任务做完啦。");
-	    text("再见啦").findOne().click();
+	   //toast("臭宝任务做完啦。");
+	    //text("再见啦").findOne().click();
 //alert("由于阿里巴巴的安全机制，没有办法做小互动。请你在点击确认后结束这个脚本并打开另一个脚本继续完成任务。");
 	    sleep(SHORT_TIME);
 	   // while (textContains("点击赢红包").exists()) {
@@ -469,7 +866,7 @@ while (text("全场每满200减30").exists()) {
 	    //取消屏幕常亮
 	    device.cancelKeepingAwake();
 	    sleep(SHORT_TIME);
-	    //exit();
+	    exit();
 }
 
 
